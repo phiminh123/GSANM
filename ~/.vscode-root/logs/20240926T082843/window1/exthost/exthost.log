@@ -1,0 +1,13 @@
+2024-09-26 08:28:45.649 [info] Extension host with pid 12979 started
+2024-09-26 08:28:45.714 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2024-09-26 08:28:45.722 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2024-09-26 08:28:45.811 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2024-09-26 08:28:45.996 [info] Eager extensions activated
+2024-09-26 08:28:46.034 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2024-09-26 08:28:46.037 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2024-09-26 08:29:26.896 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+2024-09-26 08:29:26.929 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2024-09-26 08:29:27.003 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2024-09-26 08:29:27.063 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2024-09-26 08:30:58.634 [info] Extension host terminating: renderer closed the MessagePort
+2024-09-26 08:30:58.673 [info] Extension host with pid 12979 exiting with code 0
