@@ -1,0 +1,40 @@
+global:
+  scrape_interval: 15s  # Set the scrape interval
+
+rule_files:
+  - 'alert.rules'
+
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+      - targets: ['alertmanager:9093']
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus:9090']  # Prometheus itself
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']  # Use the service name 'cadvisor'
+
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']  # Use the service name 'node-exporter'
+  - job_name: 'blackbox-web-monitoring'  # Job for web monitoring
+    metrics_path: /probe  # The Blackbox Exporter uses the /probe path for scraping
+    params:
+      module: [http_2xx]  # Use the HTTP probe module (checks for 2xx status codes)
+    static_configs:
+      - targets:
+          - https://example.com  # Replace with the website you want to monitor
+          - https://facebook.com
+          - https://google.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target  # Pass target URL as a parameter to Blackbox
+      - source_labels: [__param_target]
+        target_label: instance  # Set the instance label to the URL being probed
+      - target_label: __address__
+        replacement: blackbox-exporter:9115  # Blackbox Exporter service address

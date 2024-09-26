@@ -1,0 +1,43 @@
+# my global config
+groups:
+- name: alert
+  rules:
+
+ - alert: Memory Usage High
+    expr: 100 * (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 90
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Memory Usage (instance {{ $labels.instance }})"
+      description: "Memory Usage is more than 90%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+################ CPU Usage High
+  - alert: Cpu Usage High
+    expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "CPU Usage (instance {{ $labels.instance }})"
+      description: "CPU Usage is more than 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+################ Disk Usage
+  - alert: DiskSpaceUsage
+    expr: 100 - (node_filesystem_free_bytes / node_filesystem_size_bytes) * 100 > 95
+    for: 1m
+    labels:
+      severity: error
+    annotations:
+      summary: "Disk Space Usage (instance {{ $labels.instance }})"
+      description: "Disk Space on Drive is used more than 95%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      
+
+  - alert: WebServerDown
+    expr: up{instance="localhost:8080"} == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Web Server Down (instance {{ $labels.instance }})"
+      description: "The web server at localhost:9090 is down for more than 1 minute\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"

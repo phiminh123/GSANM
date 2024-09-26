@@ -1,0 +1,28 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'trieuphongasd@gmail.com'
+  smtp_auth_username: 'trieuphongasd@gmail.com'
+  smtp_auth_password: '<fifaonline321@>'  # Use Gmail App Password if 2FA is enabled
+  smtp_require_tls: true
+
+route:
+  receiver: 'discord-webhook'
+
+  routes:
+    - receiver: 'discord-webhook'
+      match:
+        alertname: discord
+
+    - receiver: 'email-receiver'
+      match:
+        alertname: email
+
+receivers:
+  - name: 'discord-webhook'
+    webhook_configs:
+      - url: 'https://discord.com/api/webhooks/1281431323390644224/9MXcXb5A7u7XhdFy0za2LLEiS73y8X2FSXWhwYZP9GfP1DFxcRX0OuxgXLyFTyV1UBiZ'
+
+  - name: 'email-receiver'
+    email_configs:
+      - to: 'trieuphongasd@gmail.com'
+        send_resolved: true
