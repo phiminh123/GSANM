@@ -81,7 +81,7 @@ services:
         container_name: grafana
         restart: always
         volumes:
-            # - grafana_data:/var/lib/grafana
+            - grafana_data:/var/lib/grafana
             - ./grafana/dashboards:/var/lib/grafana/dashboards
             - ./grafana/provisioning:/etc/grafana/provisioning
         env_file:
@@ -96,3 +96,6 @@ services:
 
 networks:
     monitoring:
+
+volumes:
+  grafana_data: {}
