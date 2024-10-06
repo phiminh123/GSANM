@@ -32,7 +32,7 @@ scrape_configs:
       - targets:
           - https://example.com  # Replace with the website you want to monitor
           - https://facebook.com
-          - https://google.com
+          - http://localhost:3100
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target  # Pass target URL as a parameter to Blackbox
