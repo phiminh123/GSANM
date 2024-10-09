@@ -2,8 +2,7 @@ global:
   scrape_interval: 15s  # Set the scrape interval
 
 rule_files:
-  - 'alert.rules'
-
+  - "/etc/prometheus/alert-rules.yml"
 alerting:
   alertmanagers:
   - scheme: http
